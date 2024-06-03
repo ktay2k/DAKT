@@ -1,0 +1,30 @@
+-- Retrieve employees with first name Elvis and sort by salaries in descending order
+SELECT * FROM employees 
+WHERE first_name LIKE 'Elvis%' 
+ORDER BY salary DESC;
+
+-- Retrieve male employees with first name Elvis and sort by salaries in ascending order
+SELECT * FROM employees 
+WHERE first_name LIKE 'Elvis%' AND gender = 'M' 
+ORDER BY salary ASC;
+
+-- Retrieve female employees with first name Elvis and sort by hire date in descending order
+SELECT * FROM employees 
+WHERE first_name LIKE 'Elvis%' AND gender = 'F' 
+ORDER BY hire_date DESC;
+
+-- Retrieve employees with first name containing 'Elvis' and hire date between specified range
+SELECT * FROM employees 
+WHERE first_name LIKE '%Elvis%' AND hire_date BETWEEN '2023-01-01' AND '2023-12-31' 
+ORDER BY salary DESC;
+
+-- Retrieve employees with first name not starting with 'Elvis' and sort by department in ascending order
+SELECT * FROM employees 
+WHERE first_name NOT LIKE 'Elvis%' 
+ORDER BY department ASC;
+
+-- Retrieve male or female employees with first name containing 'Elvis' and sort by hire date in descending order
+SELECT * FROM employees 
+WHERE first_name LIKE '%Elvis%' AND (gender = 'M' OR gender = 'F') 
+ORDER BY hire_date DESC;
+
