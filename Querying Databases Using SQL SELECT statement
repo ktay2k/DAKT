@@ -1,30 +1,99 @@
--- Retrieve employees with first name Elvis and sort by salaries in descending order
-SELECT * FROM employees 
-WHERE first_name LIKE 'Elvis%' 
-ORDER BY salary DESC;
+-- Retrieve all columns from the employees table
+SELECT * FROM employees;
 
--- Retrieve male employees with first name Elvis and sort by salaries in ascending order
-SELECT * FROM employees 
-WHERE first_name LIKE 'Elvis%' AND gender = 'M' 
-ORDER BY salary ASC;
+-- Retrieve employee IDs and salaries from the salaries table
+SELECT emp_no, salary FROM salaries;
 
--- Retrieve female employees with first name Elvis and sort by hire date in descending order
-SELECT * FROM employees 
-WHERE first_name LIKE 'Elvis%' AND gender = 'F' 
-ORDER BY hire_date DESC;
+-- Retrieve employee data from the employees table where the hire date is after January 1, 2023
+SELECT * FROM employees WHERE hire_date > '2023-01-01';
 
--- Retrieve employees with first name containing 'Elvis' and hire date between specified range
-SELECT * FROM employees 
-WHERE first_name LIKE '%Elvis%' AND hire_date BETWEEN '2023-01-01' AND '2023-12-31' 
-ORDER BY salary DESC;
+-- Retrieve employee data from the employees table where the department is either 'Sales' or 'Marketing'
+SELECT * FROM employees WHERE department IN ('Sales', 'Marketing');
 
--- Retrieve employees with first name not starting with 'Elvis' and sort by department in ascending order
-SELECT * FROM employees 
-WHERE first_name NOT LIKE 'Elvis%' 
-ORDER BY department ASC;
+-- Retrieve employee data from the employees table where the first name is 'John' and the last name is 'Doe'
+SELECT * FROM employees WHERE first_name = 'John' AND last_name = 'Doe';
 
--- Retrieve male or female employees with first name containing 'Elvis' and sort by hire date in descending order
-SELECT * FROM employees 
-WHERE first_name LIKE '%Elvis%' AND (gender = 'M' OR gender = 'F') 
-ORDER BY hire_date DESC;
+-- Retrieve employee data from the employees table where the first name is not 'Jane'
+SELECT * FROM employees WHERE first_name != 'Jane';
+
+-- Retrieve employee data from the employees table where the gender is either 'M' or 'F'
+SELECT * FROM employees WHERE gender IN ('M', 'F');
+
+-- Retrieve employee data from the employees table where the hire date is between January 1, 2022, and December 31, 2022
+SELECT * FROM employees WHERE hire_date BETWEEN '2022-01-01' AND '2022-12-31';
+
+-- Retrieve employee data from the employees table where the first name starts with 'A' and ends with 'n'
+SELECT * FROM employees WHERE first_name LIKE 'A%n';
+
+-- Retrieve employee data from the employees table where the salary is greater than $60,000
+SELECT * FROM employees WHERE salary > 60000;
+
+-- Retrieve employee data from the employees table where the salary is less than or equal to $50,000
+SELECT * FROM employees WHERE salary <= 50000;
+
+-- Retrieve employee data from the employees table where the last name is 'Smith' and the salary is between $40,000 and $60,000
+SELECT * FROM employees WHERE last_name = 'Smith' AND salary BETWEEN 40000 AND 60000;
+
+-- Retrieve employee data from the employees table sorted by hire date in ascending order
+SELECT * FROM employees ORDER BY hire_date ASC;
+
+-- Retrieve employee data from the employees table sorted by salary in descending order
+SELECT * FROM employees ORDER BY salary DESC;
+
+-- Retrieve the first 10 employee IDs from the employees table
+SELECT emp_no FROM employees LIMIT 10;
+
+-- Retrieve employee data from the employees table with the first name aliased as 'Employee First Name'
+SELECT first_name AS 'Employee First Name' FROM employees;
+
+-- Retrieve the average salary from the salaries table
+SELECT AVG(salary) AS 'Average Salary' FROM salaries;
+
+-- Retrieve the maximum salary from the salaries table
+SELECT MAX(salary) AS 'Maximum Salary' FROM salaries;
+
+-- Retrieve the minimum salary from the salaries table
+SELECT MIN(salary) AS 'Minimum Salary' FROM salaries;
+
+-- Retrieve the total number of employees in the employees table
+SELECT COUNT(*) AS 'Total Employees' FROM employees;
+
+-- Retrieve the total number of female employees in the employees table
+SELECT COUNT(*) AS 'Female Employees' FROM employees WHERE gender = 'F';
+
+-- Retrieve the total number of male employees in the employees table
+SELECT COUNT(*) AS 'Male Employees' FROM employees WHERE gender = 'M';
+
+-- Retrieve the average salary of male employees in the employees table
+SELECT AVG(salary) AS 'Average Salary (Male)' FROM employees WHERE gender = 'M';
+
+-- Retrieve the average salary of female employees in the employees table
+SELECT AVG(salary) AS 'Average Salary (Female)' FROM employees WHERE gender = 'F';
+
+-- Retrieve the number of employees in each department from the employees table
+SELECT department, COUNT(*) AS 'Number of Employees' FROM employees GROUP BY department;
+
+-- Retrieve the number of employees hired in each year from the employees table
+SELECT YEAR(hire_date) AS 'Hire Year', COUNT(*) AS 'Number of Hires' FROM employees GROUP BY YEAR(hire_date);
+
+-- Retrieve the department with the highest number of employees from the employees table
+SELECT department, COUNT(*) AS 'Number of Employees' FROM employees GROUP BY department ORDER BY COUNT(*) DESC LIMIT 1;
+
+-- Retrieve the department with the lowest number of employees from the employees table
+SELECT department, COUNT(*) AS 'Number of Employees' FROM employees GROUP BY department ORDER BY COUNT(*) ASC LIMIT 1;
+
+-- Retrieve the employee with the highest salary from the employees table
+SELECT * FROM employees ORDER BY salary DESC LIMIT 1;
+
+-- Retrieve the employee with the lowest salary from the employees table
+SELECT * FROM employees ORDER BY salary ASC LIMIT 1;
+
+-- Retrieve the employees who joined the company before January 1, 2020, and have a salary greater than $50,000
+SELECT * FROM employees WHERE hire_date < '2020-01-01' AND salary > 50000;
+
+-- Retrieve the employees who have a first name starting with 'J' or ending with 'n' from the employees table
+SELECT * FROM employees WHERE first_name LIKE 'J%' OR first_name LIKE '%n';
+
+-- Retrieve the employees who do not have a last name starting with 'S' from the employees table
+SELECT * FROM employees WHERE last_name NOT
 
